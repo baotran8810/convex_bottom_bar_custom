@@ -23,10 +23,8 @@ import 'interface.dart';
 import 'item.dart';
 import 'painter.dart';
 import 'stack.dart' as extend;
-import 'style/fixed_circle_tab_style.dart';
+
 import 'style/fixed_tab_style.dart';
-import 'style/react_circle_tab_style.dart';
-import 'style/react_tab_style.dart';
 import 'style/styles.dart';
 
 /// Default size of the curve line.
@@ -208,17 +206,17 @@ class ConvexAppBar extends StatefulWidget {
     double? cornerRadius,
     TabStyle? style,
     Curve? curve,
+    TextStyle? textStyle,
     ChipBuilder? chipBuilder,
   }) : this.builder(
           key: key,
-          itemBuilder: supportedStyle(
-            style ?? TabStyle.reactCircle,
-            items: items,
-            color: color ?? Colors.white60,
-            activeColor: activeColor ?? Colors.white,
-            backgroundColor: backgroundColor ?? Colors.blue,
-            curve: curve ?? Curves.easeInOut,
-          ),
+          itemBuilder: supportedStyle(style ?? TabStyle.reactCircle,
+              items: items,
+              color: color ?? Colors.white60,
+              activeColor: activeColor ?? Colors.white,
+              backgroundColor: backgroundColor ?? Colors.blue,
+              curve: curve ?? Curves.easeInOut,
+              textStyle: textStyle ?? TextStyle()),
           onTap: onTap,
           onTapNotify: onTabNotify,
           controller: controller,
@@ -579,7 +577,10 @@ class ConvexAppBarState extends State<ConvexAppBar>
               alignment: offset,
               child: GestureDetector(
                 onTap: () => _onTabClick(convexIndex),
-                child: _newTab(convexIndex, active),
+                child: _newTab(
+                  convexIndex,
+                  active,
+                ),
               )),
         ),
       ],
@@ -618,7 +619,11 @@ class ConvexAppBarState extends State<ConvexAppBar>
   }
 
   Widget _newTab(int i, bool active) {
-    final child = widget.itemBuilder.build(context, i, active);
+    final child = widget.itemBuilder.build(
+      context,
+      i,
+      active,
+    );
     return widget.chipBuilder?.build(context, child, i, active) ?? child;
   }
 

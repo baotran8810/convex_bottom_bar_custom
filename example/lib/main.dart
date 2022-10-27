@@ -54,9 +54,10 @@ class HelloConvexAppBar extends StatelessWidget {
         onPressed: () => Navigator.of(context).pushNamed('/bar'),
       )),
       bottomNavigationBar: ConvexAppBar(
-        style: TabStyle.react,
+        style: TabStyle.fixed,
+        textStyle: TextStyle(fontSize: 10),
         items: [
-          TabItem(icon: Icons.list),
+          TabItem(icon: Icons.list, title: "sadsad"),
           TabItem(icon: Icons.calendar_today),
           TabItem(icon: Icons.assessment),
         ],

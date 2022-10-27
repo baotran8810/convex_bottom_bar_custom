@@ -25,12 +25,15 @@ class FixedTabStyle extends InnerBuilder {
   /// Index of the centered convex shape.
   final int convexIndex;
 
+  final TextStyle textStyle;
+
   /// Create style builder.
   FixedTabStyle({
     required List<TabItem> items,
     required Color activeColor,
     required Color color,
     required this.convexIndex,
+    required this.textStyle,
   }) : super(items: items, activeColor: activeColor, color: color);
 
   @override
@@ -38,7 +41,6 @@ class FixedTabStyle extends InnerBuilder {
     var c = active ? activeColor : color;
     var style = ofStyle(context);
     var item = items[index];
-    var textStyle = style.textStyle(c, item.fontFamily);
 
     if (index == convexIndex) {
       var item = items[convexIndex];
