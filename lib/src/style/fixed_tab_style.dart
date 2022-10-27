@@ -27,6 +27,8 @@ class FixedTabStyle extends InnerBuilder {
 
   final TextStyle textStyle;
 
+  int? centerSize;
+
   /// Create style builder.
   FixedTabStyle({
     required List<TabItem> items,
@@ -34,6 +36,7 @@ class FixedTabStyle extends InnerBuilder {
     required Color color,
     required this.convexIndex,
     required this.textStyle,
+    this.centerSize,
   }) : super(items: items, activeColor: activeColor, color: color);
 
   @override
@@ -41,7 +44,7 @@ class FixedTabStyle extends InnerBuilder {
     var c = active ? activeColor : color;
     var style = ofStyle(context);
     var item = items[index];
-
+    print(centerSize);
     if (index == convexIndex) {
       var item = items[convexIndex];
       return Container(
@@ -52,9 +55,9 @@ class FixedTabStyle extends InnerBuilder {
             BlendImageIcon(
               active ? item.activeIcon ?? item.icon : item.icon,
               color: item.blend ? (c) : null,
-              size: style.activeIconSize,
+              size: centerSize?.toDouble(),
             ),
-            Text(item.title ?? '', style: textStyle)
+            Text(item.title ?? '', style: textStyle.copyWith(color: c))
           ],
         ),
       );

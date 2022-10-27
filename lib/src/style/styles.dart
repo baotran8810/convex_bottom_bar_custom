@@ -30,6 +30,7 @@ DelegateBuilder supportedStyle(
   required Color backgroundColor,
   required Curve curve,
   required TextStyle textStyle,
+  int? centerSize,
 }) {
   assert(items.isNotEmpty, 'items should not be empty');
   assert(
@@ -41,6 +42,7 @@ DelegateBuilder supportedStyle(
   switch (style) {
     case TabStyle.fixed:
       builder = FixedTabStyle(
+        centerSize: centerSize,
         items: items,
         color: color,
         activeColor: activeColor,
