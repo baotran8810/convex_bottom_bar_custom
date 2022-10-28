@@ -30,6 +30,9 @@ DelegateBuilder supportedStyle(
   required Color backgroundColor,
   required Curve curve,
   required TextStyle textStyle,
+  required double bottomPadding,
+  required double spacing,
+  required double centerSpacing,
   int? centerSize,
 }) {
   assert(items.isNotEmpty, 'items should not be empty');
@@ -48,6 +51,9 @@ DelegateBuilder supportedStyle(
         activeColor: activeColor,
         textStyle: textStyle,
         convexIndex: items.length ~/ 2,
+        bottomPadding: bottomPadding,
+        spacing: spacing,
+        centerSpacing: centerSpacing,
       );
       break;
 
@@ -58,6 +64,9 @@ DelegateBuilder supportedStyle(
         activeColor: activeColor,
         textStyle: textStyle,
         convexIndex: items.length ~/ 2,
+        bottomPadding: bottomPadding,
+        spacing: spacing,
+        centerSpacing: centerSpacing,
       );
       break;
   }

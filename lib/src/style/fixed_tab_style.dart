@@ -29,6 +29,12 @@ class FixedTabStyle extends InnerBuilder {
 
   int? centerSize;
 
+  double bottomPadding;
+
+  double spacing;
+
+  double centerSpacing;
+
   /// Create style builder.
   FixedTabStyle({
     required List<TabItem> items,
@@ -36,6 +42,9 @@ class FixedTabStyle extends InnerBuilder {
     required Color color,
     required this.convexIndex,
     required this.textStyle,
+    required this.bottomPadding,
+    required this.spacing,
+    required this.centerSpacing,
     this.centerSize,
   }) : super(items: items, activeColor: activeColor, color: color);
 
@@ -47,7 +56,7 @@ class FixedTabStyle extends InnerBuilder {
     if (index == convexIndex) {
       var item = items[convexIndex];
       return Container(
-        padding: EdgeInsets.only(bottom: 2),
+        padding: EdgeInsets.only(bottom: bottomPadding),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
@@ -55,6 +64,9 @@ class FixedTabStyle extends InnerBuilder {
               active ? item.activeIcon ?? item.icon : item.icon,
               color: item.blend ? (c) : null,
               size: centerSize?.toDouble(),
+            ),
+            SizedBox(
+              height: centerSpacing,
             ),
             Text(item.title ?? '', style: textStyle.copyWith(color: c))
           ],
@@ -72,10 +84,13 @@ class FixedTabStyle extends InnerBuilder {
         ? <Widget>[icon]
         : <Widget>[
             icon,
+            SizedBox(
+              height: centerSpacing,
+            ),
             Text(item.title ?? '', style: textStyle.copyWith(color: c))
           ];
     return Container(
-      padding: EdgeInsets.only(bottom: 2),
+      padding: EdgeInsets.only(bottom: bottomPadding),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: children,
